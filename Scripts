@@ -1,0 +1,30 @@
+CREATE PROCEDURE proc() 
+
+BEGIN  
+ DROP TEMPORARY TABLE IF EXISTS table1;
+ DROP TEMPORARY TABLE IF EXISTS table2;
+
+CREATE TEMPORARY TABLE table1 (
+     Id int not null primary key,
+     Nome nvarchar(50),
+     Idade int);
+   
+CREATE TEMPORARY TABLE table2 (
+     Id int not null primary key,
+     Nome nvarchar(50),
+     Idade int);
+     
+INSERT INTO table1 (Id, Nome, Idade) VALUES(1, Gustavo, 20); 
+INSERT INTO table1 (Id, Nome, Idade) VALUES(2, Jaqueline, 10); 
+INSERT INTO table1 (Id, Nome, Idade) VALUES(3, Henrique, 18); 
+
+INSERT INTO table2  (Id, Nome, Idade) SELECT Id, Nome, Idade FROM table1 WHERE (idade > 18);
+
+
+SELECT * FROM table1; 
+SELECT * FROM table2; 
+
+DROP TABLE table1; 
+DROP TABLE table2;
+
+END
